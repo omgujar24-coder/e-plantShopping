@@ -3,15 +3,15 @@ import React from 'react';
 function AboutUs() {
   return (
     <div className="about-us-container">
-      <h2>About Paradise Nursery</h2>
+      <h1 className="about-us-title">About Paradise Nursery</h1>
       <p className="about-us-description">
-        At Paradise Nursery, we believe that plants bring life, clarity, and peace into every space. 
-        Our mission is to provide high-quality, ethically grown house plants that beautify your home 
-        and enhance your well-being.
+        Welcome to Paradise Nursery, your ultimate destination for high-quality indoor and outdoor house plants. We are passionate about bringing nature closer to your everyday living spaces, transforming homes and offices into vibrant green sanctuaries.
       </p>
       <p className="about-us-description">
-        Whether you are a seasoned plant enthusiast or just starting your green journey, our curated collection 
-        offers something special for every indoor environment.
+        Our mission is to promote wellness, clean indoor air, and sustainable living through carefully selected flora. From air-purifying varieties to fragrant blooms and low-maintenance succulents, our curated collection is tailored to plant lovers of all experience levels.
+      </p>
+      <p className="about-us-description">
+        At Paradise Nursery, we prioritize customer satisfaction, sustainable nursery practices, and expert care advice to help your plants thrive for years to come.
       </p>
     </div>
   );
