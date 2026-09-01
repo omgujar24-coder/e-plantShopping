@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
-import ProductList from './components/ProductList';
-import AboutUs from './components/AboutUs';
+import ProductList from './ProductList';
+import AboutUs from './AboutUs';
 
 function App() {
   const [showProductList, setShowProductList] = useState(false);
@@ -11,7 +11,7 @@ function App() {
       {!showProductList ? (
         <div className="landing-page">
           <h1 className="landing-title">Welcome To Paradise Nursery</h1>
-          <p>Where Greenery Meets Home</p>
+          <p className="landing-subtitle">Where Greenery Meets Home</p>
           <AboutUs />
           <button 
             className="get-started-btn" 
