@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addItem } from '../CartSlice';
+import { addItem } from './CartSlice';
 import CartItem from './CartItem';
 
 function ProductList({ onBackToHome }) {
@@ -11,19 +11,26 @@ function ProductList({ onBackToHome }) {
 
   const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
 
-  const plantCategories = [
+  const plantsArray = [
     {
       category: "Air Purifying Plants",
       plants: [
-        { name: "Snake Plant", image: "https://images.unsplash.com/photo-1593482892290-f54927ae1bac?q=80&w=400", cost: "$15" },
-        { name: "Spider Plant", image: "https://images.unsplash.com/photo-1572688484438-313a6e50c333?q=80&w=400", cost: "$12" }
+        { name: "Snake Plant", image: "https://images.unsplash.com/photo-1593482892290-f54927ae1bac?q=80&w=400", cost: "$15", description: "Produces oxygen at night, improving air quality." },
+        { name: "Spider Plant", image: "https://images.unsplash.com/photo-1572688484438-313a6e50c333?q=80&w=400", cost: "$12", description: "Filters formaldehyde and xylene from indoor air." }
       ]
     },
     {
-      category: "Aromatic Plants",
+      category: "Aromatic Fragrant Plants",
       plants: [
-        { name: "Lavender", image: "https://images.unsplash.com/photo-1528183429752-a97d0bf99b5a?q=80&w=400", cost: "$18" },
-        { name: "Mint", image: "https://images.unsplash.com/photo-1628556270448-4d4e4148e1b1?q=80&w=400", cost: "$10" }
+        { name: "Lavender", image: "https://images.unsplash.com/photo-1528183429752-a97d0bf99b5a?q=80&w=400", cost: "$18", description: "Calming scent, helps relieve stress and anxiety." },
+        { name: "Jasmine", image: "https://images.unsplash.com/photo-1592722546473-b3f885e35328?q=80&w=400", cost: "$20", description: "Sweet aromatic flowers that boost energy." }
+      ]
+    },
+    {
+      category: "Low Maintenance Plants",
+      plants: [
+        { name: "Aloe Vera", image: "https://images.unsplash.com/photo-1596547609652-9cf5d8d76921?q=80&w=400", cost: "$14", description: "Easy to care for with soothing skin benefits." },
+        { name: "Peace Lily", image: "https://images.unsplash.com/photo-1593691509543-c55fb32e7355?q=80&w=400", cost: "$16", description: "Thrives in low light and cleans indoor air." }
       ]
     }
   ];
@@ -47,21 +54,23 @@ function ProductList({ onBackToHome }) {
       {showCart ? (
         <CartItem onContinueShopping={() => setShowCart(false)} />
       ) : (
-        <div className="product-listing">
-          {plantCategories.map((cat, idx) => (
-            <div key={idx}>
-              <h2>{cat.category}</h2>
-              <div className="product-grid">
-                {cat.plants.map((plant, pIdx) => (
-                  <div key={pIdx} className="product-card">
-                    <img src={plant.image} alt={plant.name} />
-                    <h3>{plant.name}</h3>
-                    <p>{plant.cost}</p>
+        <div className="product-grid">
+          {plantsArray.map((categoryObj, index) => (
+            <div key={index} className="category-section">
+              <h2 className="plant_heading">{categoryObj.category}</h2>
+              <div className="product-list">
+                {categoryObj.plants.map((plant, pIndex) => (
+                  <div key={pIndex} className="product-card">
+                    <img className="product-image" src={plant.image} alt={plant.name} />
+                    <div className="product-title">{plant.name}</div>
+                    <div className="product-price">{plant.cost}</div>
+                    <p>{plant.description}</p>
                     <button 
+                      className="product-button"
                       onClick={() => handleAddToCart(plant)}
-                      disabled={addedToCart[plant.name]}
+                      disabled={addedToCart[plant.name] || cartItems.some(item => item.name === plant.name)}
                     >
-                      {addedToCart[plant.name] ? "Added to Cart" : "Add to Cart"}
+                      {addedToCart[plant.name] || cartItems.some(item => item.name === plant.name) ? "Added to Cart" : "Add to Cart"}
                     </button>
                   </div>
                 ))}
